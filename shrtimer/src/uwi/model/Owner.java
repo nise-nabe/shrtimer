@@ -1,6 +1,8 @@
 package uwi.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
@@ -9,6 +11,9 @@ import com.google.appengine.api.datastore.Key;
 
 @Model(schemaVersion = 1)
 public class Owner implements Serializable {
+    public Owner() {
+        capsules = new ArrayList<Capsule>();
+    }
 
     private static final long serialVersionUID = 1L;
 
@@ -19,6 +24,17 @@ public class Owner implements Serializable {
     private Long version;
     
     private String name;
+    
+    @Attribute(persistent = false)
+    private List<Capsule> capsules;
+
+    public List<Capsule> getCapsules() {
+        return capsules;
+    }
+
+    public void setCapsules(List<Capsule> capsules) {
+        this.capsules = capsules;
+    }
 
     /**
      * Returns the key.
